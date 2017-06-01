@@ -32,17 +32,17 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<LinhaOnibus[]>() {
                     @Override
                     public void onResponse(LinhaOnibus[] response) {
-                        for(int i = 0; i < response.length; i++){
-                            LinhaOnibus temp = new LinhaOnibus();
-                            temp.codigo = response[i].codigo.toString();
-                            temp.id = response[i].id.toString();
-                            temp.nome = response[i].nome.toString();
-                            linhasOnibus.add(temp);
-                        }
+//                        for(int i = 0; i < response.length; i++){
+//                            LinhaOnibus temp = new LinhaOnibus();
+//                            temp.codigo = response[i].codigo.toString();
+//                            temp.id = response[i].id.toString();
+//                            temp.nome = response[i].nome.toString();
+//                            linhasOnibus.add(temp);
+//                        }
                         ArrayAdapter<LinhaOnibus> adapter = new ArrayAdapter<>(
                                 MainActivity.this,
                                 android.R.layout.simple_expandable_list_item_1,
-                                linhasOnibus);
+                                response);
                         mLinhasOnibus.setAdapter(adapter);
                     }
                 }, new Response.ErrorListener() {
