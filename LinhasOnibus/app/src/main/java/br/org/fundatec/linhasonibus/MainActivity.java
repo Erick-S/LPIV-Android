@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mLinhasOnibus = (ListView)findViewById(R.id.mLinhasOnibus);
-        final ArrayList<LinhaOnibus> linhasOnibus = new ArrayList<>();
+//        final ArrayList<LinhaOnibus> linhasOnibus = new ArrayList<>();
         vq = Volley.newRequestQueue(this);
         GsonRequest<LinhaOnibus[]> request = new GsonRequest<>(
                 "http://www.poatransporte.com.br/php/facades/process.php?a=nc&p=%&t=o",
