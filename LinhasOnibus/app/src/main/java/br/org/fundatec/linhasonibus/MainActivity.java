@@ -1,10 +1,15 @@
 package br.org.fundatec.linhasonibus;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,6 +27,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getLinhasOnibus();
+
+        mLinhasOnibus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LinhaOnibus linha = ((ArrayAdapter<LinhaOnibus>)parent.getAdapter()).getItem(position);
+//                Toast.makeText(MainActivity.this, linha.nome, Toast.LENGTH_SHORT).show();
+//                Snackbar.make(view, linha.nome, Snackbar.LENGTH_SHORT).show();
+//                Intent intent = new Intent(MainActivity.this, ItinerarioActivity.class);
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                intent.putExtra("LINHAID", linha.id);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void getLinhasOnibus() {
         mLinhasOnibus = (ListView)findViewById(R.id.mLinhasOnibus);
 //        final ArrayList<LinhaOnibus> linhasOnibus = new ArrayList<>();
         vq = Volley.newRequestQueue(this);

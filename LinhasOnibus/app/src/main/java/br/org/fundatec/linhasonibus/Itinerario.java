@@ -17,14 +17,14 @@ public class Itinerario  {
 
     public static class LatLng{
 
-        private Double lat;
+        public Double lat;
 
         public LatLng(Double lat, Double lng) {
             this.lat = lat;
             this.lng = lng;
         }
 
-        private Double lng;
+        public Double lng;
 
         public String toString(){
             return "Lat: "+lat+"\nLong: "+lng;

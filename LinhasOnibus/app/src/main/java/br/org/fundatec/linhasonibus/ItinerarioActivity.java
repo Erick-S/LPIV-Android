@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,12 +30,19 @@ public class ItinerarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_itinerario);
         itinerarioView = (ListView)findViewById(R.id.itinerarioView);
         mVolleyQueue = Volley.newRequestQueue(this);
-        getItinerario();
+        if(getIntent().hasExtra("LINHAID")){
+            getItinerario(getIntent().getStringExtra("LINHAID"));
+        }
+        else{
+            //DO ELSE -> NO LINHAID
+            Toast.makeText(ItinerarioActivity.this, "NO EXTRA NAMED LINHAID", Toast.LENGTH_SHORT);
+        }
     }
 
-    private void getItinerario() {
+    private void getItinerario(String id) {
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                "http://www.poatransporte.com.br/php/facades/process.php?a=il&p=5487" ,
+//                "http://www.poatransporte.com.br/php/facades/process.php?a=il&p=5487" ,
+                ("http://www.poatransporte.com.br/php/facades/process.php?a=il&p="+id) ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
