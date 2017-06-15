@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TocaDJ</string>
+    <string name="action_send">Enviar</string>
+    <string name="title_activity_add_music">Requisitar uma música</string>
+    <string name="name_hint">Nome</string>
+    <string name="music_name_hint">Música - Autor</string>
+</resources>
