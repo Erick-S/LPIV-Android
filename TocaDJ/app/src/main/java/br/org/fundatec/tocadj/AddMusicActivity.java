@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,15 +19,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AddMusicActivity extends AppCompatActivity {
 
     private RequestQueue mVolleRequestQueue;
-    private EditText mEdtMusic;
-    private EditText mEdtName;
+    private Boolean edit = false;
+    private Music music;
+    @BindView(R.id.edtMusic) EditText mEdtMusic;
+    @BindView(R.id.edtName) EditText mEdtName;
+    @BindView(R.id.Musica) TextView mMusic;
+    @BindView(R.id.Name) TextView mName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +45,20 @@ public class AddMusicActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mVolleRequestQueue = Volley.newRequestQueue(this);
-        mEdtMusic = (EditText)findViewById(R.id.edtMusic);
-        mEdtName = (EditText)findViewById(R.id.edtName);
+        ButterKnife.bind(this);
+        YoYo.with(Techniques.RotateInUpLeft).duration(600).playOn(mEdtMusic);
+        YoYo.with(Techniques.RotateInUpLeft).duration(600).playOn(mEdtName);
+        YoYo.with(Techniques.RotateInUpLeft).duration(500).playOn(mMusic);
+        YoYo.with(Techniques.RotateInUpLeft).duration(500).playOn(mName);
+
+        if(getIntent().hasExtra("key")){
+            edit = true;
+            music = new Music(getIntent().getStringExtra("key"),
+                    getIntent().getStringExtra("music"),
+                    getIntent().getStringExtra("user"));
+            mEdtMusic.setText(music.getMusic());
+            mEdtName.setText(music.getUser());
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,8 +97,8 @@ public class AddMusicActivity extends AppCompatActivity {
 //        POST "https://fundatecti09.firebaseio.com/";  //Docs puts an -demo in demonstration URL...
         try {
             JSONObject obj = new JSONObject();
-//            obj.put("music", "Palästinalied - Walther von der Vogelweide");
-//            obj.put("user", "Erick S.");
+//            obj.put("music", "Fixed Music");
+//            obj.put("user", "Fixed User");
             obj.put("music", mEdtMusic.getText());
             obj.put("user", mEdtName.getText());
 
