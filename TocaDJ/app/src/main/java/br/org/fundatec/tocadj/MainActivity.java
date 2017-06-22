@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
     public void lerMusicas(){
 //        GET "https://fundatecti09.firebaseio.com/musicas.json"
 
+        musics.clear(); // -> Because of refresh, each time the method is called, the list is duplicated...
         StringRequest req = new StringRequest("https://fundatecti09.firebaseio.com/musicas.json",
                 new Response.Listener<String>() {
                     @Override

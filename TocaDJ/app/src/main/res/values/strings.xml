@@ -4,4 +4,5 @@
     <string name="title_activity_add_music">Request an music</string>
     <string name="name_hint">Name</string>
     <string name="music_name_hint">Music - Author</string>
+    <string name="title_edit_music">Edit the request</string>
 </resources>
