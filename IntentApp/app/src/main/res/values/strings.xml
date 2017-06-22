@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">IntentApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_openURL">Abrir URL</string>
+    <string name="action_callPhone">Ligar</string>
+    <string name="action_createEvent">Inserir na agenda</string>
+    <string name="action_composeEmail">Compor E-Mail</string>
+</resources>
