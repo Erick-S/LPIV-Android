@@ -62,10 +62,34 @@ public class BDLite extends SQLiteOpenHelper {
         return people;
     }
 
+    public Person select(Long id){
+        Person person = new Person();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id, name, gender, birth FROM person WHERE id = ?", new String[]{id.toString()});
+        if(cursor.moveToFirst()){
+            person.setId(cursor.getLong(0));
+            person.setName(cursor.getString(1));
+            person.setGender(cursor.getString(2));
+            person.setBirth(cursor.getString(3));
+        }
+        return person;
+    }
+
     //U
-    public void update(){}
+    public Person update(Person person){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues  cv = new ContentValues();
+        cv.put("name", person.getName());
+        cv.put("gender", person.getGender());
+        cv.put("birth", person.getBirth());
+        db.update("person", cv, "id = ?", new String[]{person.getId().toString()});
+        return person;
+    }
 
     //D
-    public void delete(){}
+    public void delete(Long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM person WHERE id = ?", new String[]{id.toString()});
+    }
 
 }

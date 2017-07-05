@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -29,9 +30,16 @@ public class MainActivity extends AppCompatActivity {
         mPeoplesList = (ListView)findViewById(R.id.peoplesList);
 
         db = new BDLite(this);
-//        Person person = new Person(0L, "Erick", "M", "02/03/1999");
-//        db.insertPerson(person);
-//        ArrayList<Person> people = db.selectAll();
+
+        mPeoplesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Person person = ((ArrayAdapter<Person>)parent.getAdapter()).getItem(position);
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("id", person.getId());
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

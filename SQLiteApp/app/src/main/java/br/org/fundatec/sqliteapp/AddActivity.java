@@ -32,6 +32,7 @@ public class AddActivity extends AppCompatActivity {
 
         db.insertPerson(person);
 
+        db.close();
         finish();
     }
 }
