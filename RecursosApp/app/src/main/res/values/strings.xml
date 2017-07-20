@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RecursosApp</string>
+    <string name="permission_gps_rationale">O aplicativo deseja acessar o seu GPS. Você permite o aplicativo a acessar seu GPS?</string>
+    <string name="button_allow">Permitir</string>
+    <string name="button_deny">Negar</string>
+    <string name="permission_gps_denied">Você não permitiu o aplicativo acessar seu GPS.</string>
+    <string name="permission_gps_neverask">Você bloqueou o acesso ao GPS do aplicativo. Entre nas configurações para alterar as permissões.</string>
+</resources>
